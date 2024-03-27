@@ -19,6 +19,8 @@ deploy_online_landing_zones: true
 default_location: ${default_location}
 disable_telemetry: true
 deploy_management_resources: true
+deploy_connectivity_resources: true
+deploy_identity_resources: true
 configure_management_resources:
   location: ${default_location}
   settings:
