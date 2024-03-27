@@ -1,20 +1,11 @@
-archetypes:  # `caf-enterprise-scale` module, add inputs as listed on the module registry where necessary.
-  # Base variables
-  root_name: Soniak
+archetypes: # `caf-enterprise-scale` module, add inputs as listed on the module registry where necessary.
+  root_name: soniak
   root_id: soniak-alz
-  subscription_id_connectivity: ${subscription_id_connectivity}
-  subscription_id_identity: ${subscription_id_identity}
-  subscription_id_management: ${subscription_id_management}
-  root_parent_id: ${root_parent_management_group_id}
-  deploy_core_landing_zones: true
   deploy_corp_landing_zones: true
   deploy_online_landing_zones: true
-  default_location: ${default_location}
-  deploy_management_resources: true
-  deploy_identity_resources: true
+  default_location: uksouth
   disable_telemetry: true
-
-
+  deploy_management_resources: true
 connectivity:
   hubnetworking:  # `hubnetworking` module, add inputs as listed on the module registry where necessary.
     hub_virtual_networks:
