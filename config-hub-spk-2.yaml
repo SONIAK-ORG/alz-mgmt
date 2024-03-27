@@ -1,11 +1,34 @@
 archetypes: # `caf-enterprise-scale` module, add inputs as listed on the module registry where necessary.
-  root_name: soniak
-  root_id: soniak-alz
-  deploy_corp_landing_zones: true
-  deploy_online_landing_zones: true
-  default_location: uksouth
-  disable_telemetry: true
-  deploy_management_resources: true
+root_name: es
+root_id: Enterprise-Scale
+
+subscription_id_connectivity: ${subscription_id_connectivity}
+subscription_id_identity: ${subscription_id_identity}
+subscription_id_management: ${subscription_id_management}
+root_parent_id: ${root_parent_management_group_id}
+deploy_corp_landing_zones: true
+deploy_online_landing_zones: true
+default_location: ${default_location}
+disable_telemetry: true
+deploy_management_resources: true
+configure_management_resources:
+  location: ${default_location}
+  settings:
+    security_center:
+      config:
+        email_security_contact: "security_contact@replace_me"
+  advanced:
+    asc_export_resource_group_name: rg-asc-export
+    custom_settings_by_resource_type:
+      azurerm_resource_group:
+        management:
+          name: rg-management
+      azurerm_log_analytics_workspace:
+        management:
+          name: log-management
+      azurerm_automation_account:
+        management:
+          name: aa-management
 connectivity:
   hubnetworking:  # `hubnetworking` module, add inputs as listed on the module registry where necessary.
     hub_virtual_networks:
