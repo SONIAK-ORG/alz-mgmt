@@ -1,0 +1,7 @@
+configuration_file_path         = "config-hub-spk-2.yaml"
+default_location                = "uksouth"
+default_postfix                 = "1"
+root_parent_management_group_id = "832b0908-3585-4294-a01c-7763fc195006"
+subscription_id_connectivity    = "1ba2c686-9231-4bfd-bb2e-aadb1309cfac"
+subscription_id_identity        = "78d2bc54-6618-4494-bf06-41cba8aaa6a2"
+subscription_id_management      = "b2482f64-4fd4-43d2-803f-c6cee0aa45da"
