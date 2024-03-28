@@ -1,3 +1,4 @@
+
 # This file contains templated variables to avoid repeating the same hard-coded values.
 # Templated variables are denoted by the dollar curly braces token. The following details each templated variable that you can use:
 # `default_location`: This is an Azure location sourced from the `default_location` variable. This can be used to set the location of resources.
@@ -41,8 +42,8 @@ connectivity:
   hubnetworking: # `hubnetworking` module, add inputs as listed on the module registry where necessary.
     hub_virtual_networks:
       primary:
-        name: vnet-hub-uks
-        resource_group_name: rg-connectivity-alz-uks
+        name: vnet-hub
+        resource_group_name: rg-connectivity-primary-uks
         location: ${default_location}
         address_space:
           - 10.0.0.0/16
@@ -50,10 +51,9 @@ connectivity:
           name: fw-hub
           sku_name: AZFW_VNet
           sku_tier: Standard
-          subnet_address_prefix: 10.0.0.0/24
-        mesh_peering_enabled: true
+          subnet_address_prefix: 10.0.1.0/24
         virtual_network_gateway: # `vnet-gateway` module, add inputs as listed on the module registry where necessary.
-          name: vgw-hub-uks
+          name: vgw-hub
           sku: VpnGw1
           type: Vpn
           subnet_address_prefix: 10.0.2.0/24
