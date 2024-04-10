@@ -46,11 +46,11 @@ connectivity:
         location: ${default_location}
         address_space:
           - 10.0.0.0/16
-        # firewall:
-        #   name: fw-hub
-        #   sku_name: AZFW_VNet
-        #   sku_tier: Standard
-        #   subnet_address_prefix: 10.0.0.0/24
+        firewall:
+          name: fw-hub
+          sku_name: AZFW_VNet
+          sku_tier: Standard
+          subnet_address_prefix: 10.0.0.0/24
         mesh_peering_enabled: true
       secondary:
         name: vnet-hub-ukw
@@ -58,10 +58,10 @@ connectivity:
         location: ${default_location}
         address_space:
           - 10.1.0.0/16
-        # firewall:
-        #   name: fw-hub
-        #   sku_name: AZFW_VNet
-        #   sku_tier: Standard
-        #   subnet_address_prefix: 10.1.0.0/24
+        firewall:
+          name: fw-hub
+          sku_name: AZFW_VNet
+          sku_tier: Standard
+          subnet_address_prefix: 10.1.0.0/24
         mesh_peering_enabled: true
 
