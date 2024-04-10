@@ -54,8 +54,7 @@ connectivity:
           ip_configurations:
             public_ipyuyii:
               sku: "Standard"
-              allocation_method: static
-            ip_configuration_name: "Test"
+              allocation_method: Static 
             
 
 
