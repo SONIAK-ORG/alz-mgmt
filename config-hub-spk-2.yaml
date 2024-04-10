@@ -52,6 +52,7 @@ connectivity:
         #   sku_tier: Standard
         #   subnet_address_prefix: 10.0.0.0/24
         mesh_peering_enabled: true
+    hub_virtual_networks:
       secondary:
         name: vnet-hub-ukw
         resource_group_name: rg-connectivity-alz-ukw
