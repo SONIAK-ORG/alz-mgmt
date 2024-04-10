@@ -54,5 +54,7 @@ connectivity:
           ip_configurations:
             public_ip:
               sku: "Standard"
+            ip_configuration_name: "Test"
+            
 
 
