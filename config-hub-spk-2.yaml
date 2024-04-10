@@ -53,6 +53,6 @@ connectivity:
           subnet_address_prefix: 10.0.2.0/24
           ip_configurations:
             public_ip:
-              sku: standard
+              sku: Standard
 
 
