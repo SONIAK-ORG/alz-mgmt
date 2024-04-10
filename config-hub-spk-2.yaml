@@ -1,67 +1,62 @@
-# This file contains templated variables to avoid repeating the same hard-coded values.
-# Templated variables are denoted by the dollar curly braces token. The following details each templated variable that you can use:
-# `default_location`: This is an Azure location sourced from the `default_location` variable. This can be used to set the location of resources.
-# `root_parent_management_group_id`: This is the id of the management group that the ALZ hierarchy will be nested under.
-# `subscription_id_identity`: The subscription ID of the subscription to deploy the identity resources to, sourced from the variable `subscription_id_identity`.
-# `subscription_id_connectivity`: The subscription ID of the subscription to deploy the connectivity resources to, sourced from the variable `subscription_id_connectivity`.
-# `subscription_id_management`: The subscription ID of the subscription to deploy the management resources to, sourced from the variable `subscription_id_management`.
----
-archetypes: # `caf-enterprise-scale` module, add inputs as listed on the module registry where necessary.
-  root_name: soniak
-  root_id: soniak-alz
-  subscription_id_connectivity: ${subscription_id_connectivity}
-  subscription_id_identity: ${subscription_id_identity}
-  subscription_id_management: ${subscription_id_management}
-  root_parent_id: ${root_parent_management_group_id}
-  deploy_corp_landing_zones: true
-  deploy_online_landing_zones: true
-  default_location: ${default_location}
-  disable_telemetry: true
-  deploy_management_resources: true
-  configure_management_resources:
-    location: ${default_location}
-    settings:
-      security_center:
-        config:
-          email_security_contact: "security_contact@replace_me"
-    advanced:
-      asc_export_resource_group_name: rg-asc-export
-      custom_settings_by_resource_type:
-        azurerm_resource_group:
-          management:
-            name: rg-management
-        azurerm_log_analytics_workspace:
-          management:
-            name: log-management
-        azurerm_automation_account:
-          management:
-            name: aa-management
-
-connectivity:
-  hubnetworking: # `hubnetworking` module, add inputs as listed on the module registry where necessary.
-    hub_virtual_networks:
-      primary:
-        name: vnet-hub-uks
-        resource_group_name: rg-connectivity-alz-uks
+    # This file contains templated variables to avoid repeating the same hard-coded values.
+    # Templated variables are denoted by the dollar curly braces token. The following details each templated variable that you can use:
+    # `default_location`: This is an Azure location sourced from the `default_location` variable. This can be used to set the location of resources.
+    # `root_parent_management_group_id`: This is the id of the management group that the ALZ hierarchy will be nested under.
+    # `subscription_id_identity`: The subscription ID of the subscription to deploy the identity resources to, sourced from the variable `subscription_id_identity`.
+    # `subscription_id_connectivity`: The subscription ID of the subscription to deploy the connectivity resources to, sourced from the variable `subscription_id_connectivity`.
+    # `subscription_id_management`: The subscription ID of the subscription to deploy the management resources to, sourced from the variable `subscription_id_management`.
+    ---
+    archetypes: # `caf-enterprise-scale` module, add inputs as listed on the module registry where necessary.
+      root_name: soniak
+      root_id: soniak-alz
+      subscription_id_connectivity: ${subscription_id_connectivity}
+      subscription_id_identity: ${subscription_id_identity}
+      subscription_id_management: ${subscription_id_management}
+      root_parent_id: ${root_parent_management_group_id}
+      deploy_corp_landing_zones: true
+      deploy_online_landing_zones: true
+      default_location: ${default_location}
+      disable_telemetry: true
+      deploy_management_resources: true
+      configure_management_resources:
         location: ${default_location}
-        address_space:
-          - 10.0.0.0/16
-        # firewall:
-        #   name: fw-hub
-        #   sku_name: AZFW_VNet
-        #   sku_tier: Standard
-        #   subnet_address_prefix: 10.0.0.0/24
-        mesh_peering_enabled: true
-      secondary:
-        name: vnet-hub-ukw
-        resource_group_name: rg-connectivity-alz-ukw
-        location: ${default_location}
-        address_space:
-          - 10.1.0.0/16
-        # firewall:
-        #   name: fw-hub
-        #   sku_name: AZFW_VNet
-        #   sku_tier: Standard
-        #   subnet_address_prefix: 10.1.0.0/24
-        mesh_peering_enabled: true
-
+        settings:
+          security_center:
+            config:
+              email_security_contact: "security_contact@replace_me"
+        advanced:
+          asc_export_resource_group_name: rg-asc-export
+          custom_settings_by_resource_type:
+            azurerm_resource_group:
+              management:
+                name: rg-management
+            azurerm_log_analytics_workspace:
+              management:
+                name: log-management
+            azurerm_automation_account:
+              management:
+                name: aa-management
+    
+    connectivity:
+      hubnetworking: # `hubnetworking` module, add inputs as listed on the module registry where necessary.
+        hub_virtual_networks:
+          primary:
+            name: vnet-hub-uks
+            resource_group_name: rg-connectivity-alz-uks
+            location: ${default_location}
+            address_space:
+              - 10.0.0.0/16
+            firewall:
+              name: fw-hub-uks
+              sku_name: AZFW_VNet
+              sku_tier: Standard
+              subnet_address_prefix: 10.0.0.0/24
+            mesh_peering_enabled: true
+            virtual_network_gateway: # `vnet-gateway` module, add inputs as listed on the module registry where necessary.
+              name: vgw-hub-uks
+              sku: VpnGw1
+              type: Vpn
+              subnet_address_prefix: 10.0.2.0/24
+              ip_configurations:
+                public_ip:
+                  sku: "standard"
