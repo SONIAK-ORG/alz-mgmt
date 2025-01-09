@@ -110,7 +110,7 @@ management_resource_settings = {
 */
 management_group_settings = {
   location           = "$${starter_location_01}"
-  architecture_name  = "alz"
+  architecture_name  = "custom"
   parent_resource_id = "$${root_parent_management_group_id}"
   policy_default_values = {
     ama_change_tracking_data_collection_rule_id = "$${ama_change_tracking_data_collection_rule_id}"
@@ -182,23 +182,23 @@ virtual_wan_virtual_hubs = {
       location        = "$${starter_location_01}"
       address_prefix  = "$${primary_hub_address_space}"
     }
-    firewall = {
-      name     = "$${primary_firewall_name}"
-      sku_name = "AZFW_Hub"
-      sku_tier = "Standard"
-      zones    = "$${starter_location_01_availability_zones}"
-    }
-    firewall_policy = {
-      name = "$${primary_firewall_policy_name}"
-    }
-    virtual_network_gateways = {
-      express_route = {
-        name = "$${primary_virtual_network_gateway_express_route_name}"
-      }
-      vpn = {
-        name = "$${primary_virtual_network_gateway_vpn_name}"
-      }
-    }
+    # firewall = {
+    #   name     = "$${primary_firewall_name}"
+    #   sku_name = "AZFW_Hub"
+    #   sku_tier = "Standard"
+    #   zones    = "$${starter_location_01_availability_zones}"
+    # }
+    # firewall_policy = {
+    #   name = "$${primary_firewall_policy_name}"
+    # }
+    # virtual_network_gateways = {
+    #   express_route = {
+    #     name = "$${primary_virtual_network_gateway_express_route_name}"
+    #   }
+    #   vpn = {
+    #     name = "$${primary_virtual_network_gateway_vpn_name}"
+    #   }
+    # }
     private_dns_zones = {
       resource_group_name            = "$${dns_resource_group_name}"
       is_primary                     = true
@@ -209,16 +209,16 @@ virtual_wan_virtual_hubs = {
         name = "$${primary_private_dns_resolver_name}"
       }
     }
-    bastion = {
-      subnet_address_prefix = "$${primary_bastion_subnet_address_prefix}"
-      bastion_host = {
-        name = "$${primary_bastion_host_name}"
-      }
-      bastion_public_ip = {
-        name  = "$${primary_bastion_host_public_ip_name}"
-        zones = "$${starter_location_01_availability_zones}"
-      }
-    }
+    # bastion = {
+    #   subnet_address_prefix = "$${primary_bastion_subnet_address_prefix}"
+    #   bastion_host = {
+    #     name = "$${primary_bastion_host_name}"
+    #   }
+    #   bastion_public_ip = {
+    #     name  = "$${primary_bastion_host_public_ip_name}"
+    #     zones = "$${starter_location_01_availability_zones}"
+    #   }
+    # }
     side_car_virtual_network = {
       name          = "$${primary_sidecar_virtual_network_name}"
       address_space = ["$${primary_side_car_virtual_network_address_space}"]
